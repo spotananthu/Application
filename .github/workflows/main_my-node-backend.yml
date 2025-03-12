@@ -88,6 +88,9 @@ jobs:
         with:
           node-version: 18
 
+      - name: Set Environment Variables
+        run: echo "REACT_APP_API_URL=${{ secrets.REACT_APP_API_BASE_URL }}" >> $GITHUB_ENV
+
       - name: Install Dependencies & Build Frontend
         run: |
           cd frontend
