@@ -9,21 +9,37 @@ function App() {
     const [task, setTask] = useState("");
 
     // Fetch tasks on load
+    const fetchTasks = () => {
+        axios.get(API_URL)
+            .then((response) => setTasks(response.data))
+            .catch((error) => console.error("Error fetching tasks:", error));
+    };
+
     useEffect(() => {
-        axios.get(API_URL).then((response) => setTasks(response.data));
+        fetchTasks();
     }, []);
 
     // Add task
     const addTask = async () => {
         if (!task.trim()) return;
-        const response = await axios.post(API_URL, { task });
-        setTasks([...tasks, { ...response.data, completed: false }]);
-        setTask("");
+        
+        try {
+            const response = await axios.post(API_URL, { task });
+            setTasks([...tasks, { ...response.data, completed: false }]);
+            setTask("");
+        } catch (error) {
+            console.error("Error adding task:", error);
+        }
     };
 
     // Delete task
-    const deleteTask = (id) => {
-        setTasks(tasks.filter((t) => t.id !== id));
+    const deleteTask = async (id) => {
+        try {
+            await axios.delete(`${API_URL}/${id}`);
+            fetchTasks();  // Fetch latest tasks after deletion
+        } catch (error) {
+            console.error("Error deleting task:", error);
+        }
     };
 
     // Toggle task completion
@@ -37,7 +53,7 @@ function App() {
 
     return (
         <div className="container">
-            <h1>To-Do List</h1>
+            <h1>📝 To-Do App</h1>
             <div className="input-container">
                 <input
                     type="text"

@@ -34,14 +34,32 @@ input {
 button {
   padding: 8px 15px;
   border: none;
-  background-color: #28a745;
   color: white;
   border-radius: 5px;
   cursor: pointer;
 }
 
-button:hover {
+/* Add button */
+button:not(.delete-btn) {
+  background-color: #28a745;
+}
+
+button:not(.delete-btn):hover {
   background-color: #218838;
+}
+
+/* Delete button */
+.delete-btn {
+  background: none;
+  border: none;
+  color: red;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.delete-btn:hover {
+  color: darkred;
 }
 
 ul {
@@ -60,17 +78,4 @@ li {
 li.completed span {
   text-decoration: line-through;
   color: gray;
-}
-
-.delete-btn {
-  background-color: #dc3545;
-  border: none;
-  color: white;
-  padding: 5px;
-  cursor: pointer;
-  border-radius: 50%;
-}
-
-.delete-btn:hover {
-  background-color: #c82333;
 }
