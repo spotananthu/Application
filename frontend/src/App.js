@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
 
-const API_URL = process.env.REACT_APP_API_BASE_URL;
+const API_URL = process.env.REACT_APP_API_BASE_URL || "https://my-node-backend.azurewebsites.net/tasks";
 
 function App() {
     const [tasks, setTasks] = useState([]);
