@@ -53,7 +53,7 @@ function App() {
 
     return (
         <div className="container">
-            <h1>📝 To-Do App</h1>
+            <h1>📝 To-Do Application</h1>
             <div className="input-container">
                 <input
                     type="text"
